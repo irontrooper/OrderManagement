@@ -70,7 +70,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core.cs" />
+    <Compile Include="OrderManagementCore.cs" />
     <Compile Include="DependencyRegistrarAttribute.cs" />
     <Compile Include="OperationResult.cs" />
     <Compile Include="PerRequestLifetimeManager.cs" />

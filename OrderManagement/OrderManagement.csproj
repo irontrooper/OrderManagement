@@ -318,7 +318,7 @@
       <Name>OrderManagement.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\OrderManagement.Data\OrderManagement.Data.csproj">
-      <Project>{E3F96840-84F2-4A5C-8D45-17ECA032DB59}</Project>
+      <Project>{e3f96840-84f2-4a5c-8d45-17eca032db59}</Project>
       <Name>OrderManagement.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\OrderManagement.Domain\OrderManagement.Domain.csproj">
