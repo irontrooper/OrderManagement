@@ -39,16 +39,6 @@ namespace OrderManagement.Data
 
         #region Initialization
 
-        ///// <summary>
-        ///// Initializes a new instance of the <see cref="OrderManagementDbContext"/> class.
-        ///// </summary>
-        ///// <param name="connectionName">Name of the connection.</param>
-        //public OrderManagementDbContext(string connectionName)
-        //    : base(connectionName)
-        //{
-        //    ((IObjectContextAdapter)this).ObjectContext.CommandTimeout = 180;
-        //}
-
         /// <summary>
         /// Initializes a new instance of the <see cref="OrderManagementDbContext"/> class.
         /// </summary>

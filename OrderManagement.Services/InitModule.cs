@@ -11,8 +11,15 @@ namespace OrderManagement.Services
     /// </summary>
     public class InitModule
     {
-        public static void Init() {
+        #region Public Methods
+
+        /// <summary>
+        /// Init Module
+        /// </summary>
+        public static void Init()
+        {
         }
 
+        #endregion
     }
 }

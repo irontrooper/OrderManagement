@@ -2,7 +2,6 @@
 using OrderManagement.Domain;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,18 +9,18 @@ using System.Threading.Tasks;
 namespace OrderManagement.Data
 {
     /// <summary>
-    /// Represets a class which defines CustomerRepository
+    /// Represets a class which defines CustomerOrderDetailRepository
     /// </summary>
     [DependencyRegisterar(LifetimeManagerType = typeof(PerRequestLifetimeManager))]
-    public class CustomerRepository : OrderManagementRepository<Customer>
+    public class CustomerOrderDetailRepository : OrderManagementRepository<CustomerOrderDetail>
     {
         #region Initialization
 
         /// <summary>
-        /// Initializes a new instance of CustomerRepository
+        /// Initializes a new instance of CustomerOrderDetailRepository
         /// </summary>
         /// <param name="context"></param>
-        public CustomerRepository(OrderManagementDbContext context) : base(context)
+        public CustomerOrderDetailRepository(OrderManagementDbContext context) : base(context)
         {
         }
 

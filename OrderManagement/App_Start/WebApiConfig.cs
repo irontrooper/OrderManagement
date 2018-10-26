@@ -16,7 +16,7 @@ namespace OrderManagement
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-            OrderManagementCore.Instance.Initialize();
+            OrderManagementCore.Instance.RegisterTypes();
             ResolveApiControllers();
             // Web API routes
             config.MapHttpAttributeRoutes();

@@ -1,4 +1,5 @@
-﻿using OrderManagement.Domain;
+﻿using OrderManagement.Core;
+using OrderManagement.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,13 +17,12 @@ namespace OrderManagement.Data
     {
         #region Methods
 
-        IEnumerable<TEntity> GetAll();
         TEntity GetEntityById(int id);
-        IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
-        TEntity Add(TEntity entity);
-        TEntity Delete(TEntity entity);
-        void Edit(TEntity entity);
-        void Save();
+        OperationResult<TEntity> Add(TEntity entity);
+        OperationResult Delete(TEntity entity);
+        OperationResult Edit(TEntity entity);
+        IQueryable<TEntity> QuerableSearch();
+        void SaveChanges();
 
         #endregion
     }

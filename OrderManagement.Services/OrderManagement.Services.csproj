@@ -43,6 +43,7 @@
       <HintPath>..\packages\System.Configuration.ConfigurationManager.4.4.1\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.Helpers.dll</HintPath>
@@ -97,6 +98,7 @@
     <Compile Include="BaseServices\IOrderManagementService.cs" />
     <Compile Include="BaseServices\IOrderManagmentServiceBase.cs" />
     <Compile Include="BaseServices\OrderManagementService.cs" />
+    <Compile Include="BusinessService\CustomerOrderDetailService.cs" />
     <Compile Include="BusinessService\CustomerOrderService.cs" />
     <Compile Include="BusinessService\CustomerService.cs" />
     <Compile Include="InitModule.cs" />

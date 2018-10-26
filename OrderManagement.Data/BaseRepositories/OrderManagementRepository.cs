@@ -44,9 +44,22 @@ namespace OrderManagement.Data
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public virtual TEntity Add(TEntity entity)
+        public virtual OperationResult<TEntity> Add(TEntity entity)
         {
-            return _DbSet.Add(entity);
+            var result = new OperationResult<TEntity>();
+
+            try
+            {
+                var item = _DbSet.Add(entity);
+                SaveChanges();
+                result.Item = item;
+            }
+            catch (Exception ex)
+            {
+                result.AddError(ex.ToString());
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -54,37 +67,42 @@ namespace OrderManagement.Data
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public virtual TEntity Delete(TEntity entity)
+        public virtual OperationResult Delete(TEntity entity)
         {
-            return _DbSet.Remove(entity);
+            var result = new OperationResult();
+
+            try
+            {
+                _DbSet.Remove(entity);
+                SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                result.AddError(ex.ToString());
+            }
+
+            return result;
         }
 
         /// <summary>
         /// Updates the given entity
         /// </summary>
         /// <param name="entity"></param>
-        public virtual void Edit(TEntity entity)
+        public virtual OperationResult Edit(TEntity entity)
         {
-            _DbContext.Entry(entity).State = EntityState.Modified;
-        }
+            var result = new OperationResult();
 
-        /// <summary>
-        /// Find the entity by the given expression 
-        /// </summary>
-        /// <param name="predicate"></param>
-        /// <returns></returns>
-        public virtual IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
-        {
-            return _DbSet.Where(predicate).AsEnumerable();
-        }
+            try
+            {
+                _DbContext.Entry(entity).State = EntityState.Modified;
+                SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                result.AddError(ex.ToString());
+            }
 
-        /// <summary>
-        /// Gets all items
-        /// </summary>
-        /// <returns></returns>
-        public virtual IEnumerable<TEntity> GetAll()
-        {
-            return _DbSet.AsEnumerable();
+            return result;
         }
 
         /// <summary>
@@ -100,9 +118,19 @@ namespace OrderManagement.Data
         /// <summary>
         /// Saves the changes in db set
         /// </summary>
-        public virtual void Save()
+        public void SaveChanges()
         {
             _DbContext.SaveChanges();
+        }
+
+        /// <summary>
+        /// Gets Iquarable item list query
+        /// </summary>
+        /// <returns></returns>
+        public virtual IQueryable<TEntity> QuerableSearch()
+        {
+            IQueryable<TEntity> query = _DbContext.Set<TEntity>();
+            return query;
         }
 
         #endregion

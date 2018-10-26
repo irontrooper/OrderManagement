@@ -8,6 +8,9 @@ using Unity.Lifetime;
 
 namespace OrderManagement.Core
 {
+    /// <summary>
+    /// Represents a class which manages registration and resolving types with unity container
+    /// </summary>
     public class OrderManagementCore : IDisposable
     {
         #region Members
@@ -19,7 +22,7 @@ namespace OrderManagement.Core
         #region Properties
 
         /// <summary>
-        /// Gets the singleton instance of this class
+        /// Gets the singleton instance of OrderManagementCore class
         /// </summary>
         public static OrderManagementCore Instance
         {
@@ -30,7 +33,7 @@ namespace OrderManagement.Core
         }
 
         /// <summary>
-        /// Gets the container instance
+        /// Gets the unity container instance
         /// </summary>
         public IUnityContainer Container { get; }
 
@@ -44,7 +47,7 @@ namespace OrderManagement.Core
         #region Initialization
 
         /// <summary>
-        ///  Initialize a new instance of Core object
+        ///  Initialize a new instance of OrderManagementCore class
         /// </summary>
         public OrderManagementCore()
         {
@@ -56,16 +59,16 @@ namespace OrderManagement.Core
         #region Public Methods
 
         /// <summary>
-        /// Initialize core services and classes
+        /// Registers types
         /// </summary>
-        public void Initialize()
+        public void RegisterTypes()
         {
             Container.RegisterInstance(this, new SingletonLifetimeManager());
 
             var orderManagementAssamblies = AppDomain.CurrentDomain.GetAssemblies().ToList();
             AssemblyTypes = orderManagementAssamblies.SelectMany(x => x.GetTypes()).ToList();
 
-            ResolveDependencyRegistrarAttributes();
+            ResolveClassesWhichUsesDependencyRegistrarAttributes();
         }
 
         /// <summary>
@@ -109,9 +112,9 @@ namespace OrderManagement.Core
         #region Private Methods
 
         /// <summary>
-        /// Resolves the given types which uses dependency registrar attributes by given lifetimemanager
+        /// Resolves the types which uses dependency registrar attributes by given lifetimemanager
         /// </summary>
-        private void ResolveDependencyRegistrarAttributes()
+        private void ResolveClassesWhichUsesDependencyRegistrarAttributes()
         {
             var types = AssemblyTypes.Where(t => t.IsClass && !t.IsAbstract && t.IsDefined(typeof(DependencyRegisterarAttribute), false)).ToList();
 

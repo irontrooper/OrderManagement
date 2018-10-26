@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace OrderManagement.Services
 {
     /// <summary>
-    /// 
+    /// Represents a abstract class which manages crud operations on given entity type
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     [DependencyRegisterar(LifetimeManagerType = typeof(PerRequestLifetimeManager))]
@@ -42,50 +42,58 @@ namespace OrderManagement.Services
         /// Creates the given entity
         /// </summary>
         /// <param name="entity"></param>
-        public virtual void Create(TEntity entity)
+        public virtual OperationResult<TEntity> Insert(TEntity entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException("entity");
             }
 
-            _Repository.Add(entity);
-            _Repository.Save();
-             
+            var result = new OperationResult<TEntity>();
+
+            try
+            {
+                result = _Repository.Add(entity);
+            }
+            catch (Exception ex)
+            {
+
+                result.AddError(ex.ToString());
+            }
+
+            return result;
         }
 
         /// <summary>
         /// Deletes the given entity
         /// </summary>
         /// <param name="entity"></param>
-        public virtual void Delete(TEntity entity)
+        public virtual OperationResult Delete(TEntity entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException("entity");
             }
 
-            _Repository.Delete(entity);
-            _Repository.Save();
+            return _Repository.Delete(entity);
+
         }
 
         /// <summary>
-        /// Finds the items by given expression
+        /// Deletes entity which has the given id
         /// </summary>
-        /// <param name="predicate"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
-        public virtual IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
+        public virtual OperationResult DeleteEntityById(int id)
         {
-            return _Repository.Find(predicate);
-        }
+            var result = new OperationResult();
+            var entity = _Repository.GetEntityById(id);
+            if (entity != null)
+            {
+                result = Delete(entity);
+            }
 
-        /// <summary>
-        /// Gets all items
-        /// </summary>
-        /// <returns></returns>
-        public virtual IEnumerable<TEntity> GetAll()
-        {
-            return _Repository.GetAll();
+            return result;
         }
 
         /// <summary>
@@ -93,7 +101,7 @@ namespace OrderManagement.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public TEntity GetEntityById(int id)
+        public virtual TEntity GetEntityById(int id)
         {
             return _Repository.GetEntityById(id);
         }
@@ -102,15 +110,23 @@ namespace OrderManagement.Services
         /// Updates the given entity
         /// </summary>
         /// <param name="entity"></param>
-        public void Update(TEntity entity)
+        public OperationResult Update(TEntity entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException("entity");
             }
 
-            _Repository.Edit(entity);
-            _Repository.Save();
+            return _Repository.Edit(entity);
+        }
+
+        /// <summary>
+        ///  Gets Iquarable item list query
+        /// </summary>
+        /// <returns></returns>
+        public virtual IQueryable<TEntity> QuerableSearch()
+        {
+            return _Repository.QuerableSearch();
         }
 
         #endregion

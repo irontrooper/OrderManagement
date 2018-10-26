@@ -22,14 +22,18 @@ namespace OrderManagement.Core
         #endregion
 
         #region Initialization
+
         /// <summary>
-        /// Initialize a new instance of this class
+        /// Initialize a new instance of DependencyRegisterarAttribute
         /// </summary>
         public DependencyRegisterarAttribute()
         {
             LifetimeManagerType = typeof(TransientLifetimeManager);
         }
 
+        /// <summary>
+        /// Initialize a new instance of DependencyRegisterarAttribute with lifetimemanagertype
+        /// </summary>
         public DependencyRegisterarAttribute(Type lifetimeManagerType)
         {
             LifetimeManagerType = lifetimeManagerType;
