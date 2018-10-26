@@ -6,5 +6,5 @@ Technologies<br/>
     -IOC => Unity 5.8.11,<br/>
     -ORM => EntityFramework 6.2.0,<br/>
     -Swashbuckle 5.6.0 (Swagger) For Api Documentation<br/>
-    -Jwt Token For Security<br/>
+    -Jwt Token For Security (Reference : http://www.decatechlabs.com/secure-webapi-using-jwt)<br/>
     
