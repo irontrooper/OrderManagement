@@ -1,7 +1,7 @@
 # OrderManagement
 Order Management Web Api
 Technologies
-	  -Asp.Net Web Api 2,
+	-Asp.Net Web Api 2,
     -.Net Framework 4.6.1,
     -IOC => Unity 5.8.11,
     -ORM => EntityFramework 6.2.0,
