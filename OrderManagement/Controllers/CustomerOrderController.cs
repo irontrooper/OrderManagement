@@ -17,6 +17,7 @@ namespace OrderManagement.Controllers
     /// Represents an api controllor class which manages CustomerOrder operations
     /// </summary>
     [RoutePrefix("customers/{customerid}/orders")]
+    [Authorize]
     public class CustomerOrderController : ApiController
     {
         //POST: customers/{customerId}/orders

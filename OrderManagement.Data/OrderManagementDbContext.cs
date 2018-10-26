@@ -34,6 +34,7 @@ namespace OrderManagement.Data
         public DbSet<Product> Product { get; set; }
         public DbSet<CustomerOrder> CustomerOrder { get; set; }
         public DbSet<CustomerOrderDetail> CustomerOrderDetail { get; set; }
+        public DbSet<User> User { get; set; }
 
         #endregion
 

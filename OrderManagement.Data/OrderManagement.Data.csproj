@@ -85,6 +85,7 @@
     <Compile Include="Repositories\CustomerOrderDetailRepository.cs" />
     <Compile Include="Repositories\CustomerOrderRepository.cs" />
     <Compile Include="Repositories\CustomerRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -101,6 +101,7 @@
     <Compile Include="BusinessService\CustomerOrderDetailService.cs" />
     <Compile Include="BusinessService\CustomerOrderService.cs" />
     <Compile Include="BusinessService\CustomerService.cs" />
+    <Compile Include="BusinessService\UserService.cs" />
     <Compile Include="InitModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
